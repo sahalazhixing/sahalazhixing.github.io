@@ -3,15 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2016 | shlzx的博客</title>
+    <title>redis2 | shlzx的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="shlzx的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+    <meta name="description" content="#redis的数据类型 打开redis数据库： 12[root@redis ~]# redis-cli127.0.0.1:6379&amp;gt; ##strings:set key=values例如： set name=shlzx获取name的对应值： get name1234127.0.0.1:6379&amp;gt; set name lucyOK127.0.0.1:6379&amp;gt; get name&amp;qu">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis2">
+<meta property="og:url" content="http://yoursite.com/2016/09/04/redis1/index.html">
 <meta property="og:site_name" content="shlzx的博客">
+<meta property="og:description" content="#redis的数据类型 打开redis数据库： 12[root@redis ~]# redis-cli127.0.0.1:6379&amp;gt; ##strings:set key=values例如： set name=shlzx获取name的对应值： get name1234127.0.0.1:6379&amp;gt; set name lucyOK127.0.0.1:6379&amp;gt; get name&amp;qu">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-04T10:13:58.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shlzx的博客">
+<meta name="twitter:title" content="redis2">
+<meta name="twitter:description" content="#redis的数据类型 打开redis数据库： 12[root@redis ~]# redis-cli127.0.0.1:6379&amp;gt; ##strings:set key=values例如： set name=shlzx获取name的对应值： get name1234127.0.0.1:6379&amp;gt; set name lucyOK127.0.0.1:6379&amp;gt; get name&amp;qu">
     
 
     
@@ -206,82 +211,21 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2016</h1>
-            </div>
+            <section id="main"><article id="post-redis1" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/10/12/test/">test</a>
+        <h1 class="article-title" itemprop="name">
+            redis2
         </h1>
     
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/10/12/test/">
-            <time datetime="2016-10-12T15:59:09.000Z" itemprop="datePublished">2016-10-12</time>
-        </a>
-    </div>
-
-
-                    
-                    
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/09/07/redis3/">redis3</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/09/07/redis3/">
-            <time datetime="2016-09-07T07:50:29.000Z" itemprop="datePublished">2016-09-07</time>
-        </a>
-    </div>
-
-
-                    
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/redis/">redis</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/09/04/redis1/">redis2</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
         <a href="/2016/09/04/redis1/">
@@ -290,18 +234,153 @@
     </div>
 
 
-                    
-                    
+                        
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/redis/">redis</a>
     </div>
 
-                </div>
-            </div>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>#redis的数据类型</p>
+<p>打开redis数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@redis ~]# redis-cli</div><div class="line">127.0.0.1:6379&gt;</div></pre></td></tr></table></figure>
+<p>##strings:<br>set key=values<br>例如： set name=shlzx<br>获取name的对应值： get name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set name lucy</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get name</div><div class="line">&quot;lucy&quot;</div></pre></td></tr></table></figure></p>
+<p>#####setnx  </p>
+<blockquote>
+<p>如果key已经存在，则返回一个0<br>作用：防止设置出现覆盖现象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; setnx  shu 10</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; setnx shu 20</div><div class="line">(integer) 0</div><div class="line">127.0.0.1:6379&gt; get shu</div><div class="line">&quot;10&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>nx 代表 not exsite</p>
+<p>#####setex</p>
+<blockquote>
+<p>setex 设定值的有效值，若不设定有效值则永久有效<br>例如： setex name 10<br>有效期为10秒<br>setrange  设定values 的子字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set email lucy@shu.net</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get email</div><div class="line">&quot;lucy@shu.net&quot;</div><div class="line">127.0.0.1:6379&gt; setrange email 6 yu</div><div class="line">(integer) 12</div><div class="line">127.0.0.1:6379&gt; get email</div><div class="line">&quot;lucy@syu.net&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>#####mset: </p>
+<blockquote>
+<p>设置多个key值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; mset key1 lucy key2 12 key3 toma12</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get key1</div><div class="line">&quot;lucy&quot;</div><div class="line">127.0.0.1:6379&gt; get ke2</div><div class="line">(nil)  //返回空值</div><div class="line">127.0.0.1:6379&gt; get key2</div><div class="line">&quot;12&quot;</div><div class="line">127.0.0.1:6379&gt; get key3</div><div class="line">&quot;toma12&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>#####mget  </p>
+<blockquote>
+<p>同时获取多个key值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; mget key1 key2 key3</div><div class="line">1) &quot;lucy&quot;</div><div class="line">2) &quot;12&quot;</div><div class="line">3) &quot;toma12&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<p><strong><em>redis数值的加减运算<br>incr   每次只能加1<br>incrby  自增 自减  可以自定义</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set key5 20</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; </div><div class="line">127.0.0.1:6379&gt; get key5 </div><div class="line">&quot;20&quot;</div><div class="line">127.0.0.1:6379&gt; incr key5 6</div><div class="line">(error) ERR wrong number of arguments for &apos;incr&apos; command</div><div class="line">127.0.0.1:6379&gt; incr key5 </div><div class="line">(integer) 21</div><div class="line">127.0.0.1:6379&gt; incr key5</div><div class="line">(integer) 22</div><div class="line">127.0.0.1:6379&gt; incr key5 </div><div class="line">(integer) 23</div><div class="line">127.0.0.1:6379&gt; get key5</div><div class="line">&quot;23&quot;</div><div class="line">127.0.0.1:6379&gt; incrby key5 10</div><div class="line">(integer) 33</div><div class="line">127.0.0.1:6379&gt; get key5</div><div class="line">&quot;33&quot;</div></pre></td></tr></table></figure></p>
+<p>redis字符串的添加<br>append：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set name  tom</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get name</div><div class="line">&quot;tom&quot;</div><div class="line">127.0.0.1:6379&gt; append name .luscy</div><div class="line">(integer) 9</div><div class="line">127.0.0.1:6379&gt; get name</div><div class="line">&quot;tom.luscy&quot;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="hashes-类型"><a href="#hashes-类型" class="headerlink" title="hashes  类型"></a>hashes  类型</h2><p>#####hash<br>hset 用户:ID  key values<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; hset user:01 shu 20</div><div class="line">(integer) 0</div><div class="line">127.0.0.1:6379&gt; hget user:01 shu </div><div class="line">&quot;20&quot;</div></pre></td></tr></table></figure></p>
+<p>hset<br>hmset<br>hexists<br>hgetall<br>hvals<br>hincrby<br>hkey</p>
+
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="http://yoursite.com/2016/09/04/redis1/" data-id="cj7pnlyyn0005skuxjl1qm1wj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/09/07/redis3/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    redis3
+                
+            </div>
+        </a>
+    
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
 </section>
             
                 

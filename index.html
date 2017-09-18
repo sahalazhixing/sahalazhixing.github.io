@@ -154,11 +154,11 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                2
+                5
                 <span>文章</span>
             </div>
             <div class="article-info-block">
-                0
+                1
                 <span>标签</span>
             </div>
         </div>
@@ -207,6 +207,137 @@
 
             
             <section id="main">
+    <article id="“-“redis4”" class="article article-type-“" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2017/09/07/“redis4”/">“redis4”</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/09/07/“redis4”/">
+            <time datetime="2017-09-07T09:07:08.000Z" itemprop="datePublished">2017-09-07</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/redis/">redis</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>#redis-set类型<br><strong>set是string中无序类型集合</strong><br>1.添加 sadd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; sadd myset1 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 two</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 three</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 three</div><div class="line">(integer) 0 //注意 集合中的元素是不可重复的，股此处为空</div><div class="line">127.0.0.1:6379&gt; smembers myset1</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>2.spop 随记弹出集合的一个元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; spop myset1 </div><div class="line">&quot;two&quot;</div><div class="line">127.0.0.1:6379&gt; spop myset1 </div><div class="line">&quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; smembers myset1</div><div class="line">1) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>3.sdiff  显示两个集合中的不同之处<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; sadd myset2 one </div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset2 hello</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset2 two</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 two</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 three</div><div class="line">(integer) 0</div><div class="line">127.0.0.1:6379&gt; smembers myset1</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;three&quot;</div><div class="line">127.0.0.1:6379&gt; smembers myset2</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;hello&quot;</div><div class="line">127.0.0.1:6379&gt; sdiff myset1 myset2</div><div class="line">1) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>4.sinterstore 返回所有给定key的交集，并将结果存入为另一个key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; sadd  b 3</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  b 4</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  b 5</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  a 2</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  a 3</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  a 4</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; smembers a</div><div class="line">1) &quot;2&quot;</div><div class="line">2) &quot;3&quot;</div><div class="line">3) &quot;4&quot;</div><div class="line">127.0.0.1:6379&gt; smembers b</div><div class="line">1) &quot;3&quot;</div><div class="line">2) &quot;4&quot;</div><div class="line">3) &quot;5&quot;</div><div class="line">127.0.0.1:6379&gt; sinterstore x a b</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6379&gt; smembers x</div><div class="line">1) &quot;3&quot;</div><div class="line">2) &quot;4&quot;</div></pre></td></tr></table></figure></p>
+<p>5.sunion 显示所有给定key的并集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; smembers a</div><div class="line">1) &quot;2&quot;</div><div class="line">2) &quot;3&quot;</div><div class="line">3) &quot;4&quot;</div><div class="line">4) &quot;5&quot;</div><div class="line">127.0.0.1:6379&gt; sadd  c 1</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  c 2</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  c 12</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  c 10</div><div class="line">(integer) 1</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; smembers c</div><div class="line">1) &quot;1&quot;</div><div class="line">2) &quot;2&quot;</div><div class="line">3) &quot;10&quot;</div><div class="line">4) &quot;12&quot;</div><div class="line">127.0.0.1:6379&gt; sunion y a c</div><div class="line">1) &quot;1&quot;</div><div class="line">2) &quot;2&quot;</div><div class="line">3) &quot;3&quot;</div><div class="line">4) &quot;4&quot;</div><div class="line">5) &quot;5&quot;</div><div class="line">6) &quot;10&quot;</div><div class="line">7) &quot;12&quot;</div></pre></td></tr></table></figure>
+<p>`</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2017/09/07/“redis4”/" data-id="cj7pnlz2k000askux4zfxdu59" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -251,7 +382,7 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2017/09/02/hello-world/" data-id="cj74r5idj0000swux5ybdnxhy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2017/09/02/hello-world/" data-id="cj7pnlz2k0009skuxhthnk1fc" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -371,7 +502,291 @@
 
 </div>
 
-    <a data-url="http://yoursite.com/2016/10/12/test/" data-id="cj74r5ief0002swuxcm2dv4q0" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+    <a data-url="http://yoursite.com/2016/10/12/test/" data-id="cj7pnlyxs0003skuxlbfpbkxv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-redis3" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/09/07/redis3/">redis3</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/09/07/redis3/">
+            <time datetime="2016-09-07T07:50:29.000Z" itemprop="datePublished">2016-09-07</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/redis/">redis</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>#redis lists<br>list 既可以作为栈也可以作为队列</p>
+<p>1.存入：lpush<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; lpush list1 &quot;hello&quot;</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; lpush list1 &quot;world&quot;</div><div class="line">(integer) 2</div></pre></td></tr></table></figure></p>
+<p>2.读取：lrange<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; lrange list1 0 -1</div><div class="line">1) &quot;world&quot;</div><div class="line">2) &quot;hello&quot;</div></pre></td></tr></table></figure></p>
+<p>3.赋值：lset<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; lpush list one </div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; lpush list two</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6379&gt; lpush list three</div><div class="line">(integer) 3</div><div class="line">127.0.0.1:6379&gt; lrange list 0 -1</div><div class="line">1) &quot;three&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; lset list 1 five</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; lrange list 0 -1</div><div class="line">1) &quot;three&quot;</div><div class="line">2) &quot;five&quot;</div><div class="line">3) &quot;one&quot;</div></pre></td></tr></table></figure></p>
+<p>4.删除：lrem<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; lrem  list 2 &apos;five&apos;</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; lrange list 0 -1</div><div class="line">1) &quot;three&quot;</div><div class="line">2) &quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; lrem  list 1 &apos;three&apos;</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; lrange list 0 -1</div><div class="line">1) &quot;one&quot;</div></pre></td></tr></table></figure></p>
+<p>5.弹出头部信息 lpop<br>6.弹出尾部信息  rpop<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; rpush list3 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; rpush list3 two</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6379&gt; rpush list3 three</div><div class="line">(integer) 3</div><div class="line">127.0.0.1:6379&gt; rpush list3 four</div><div class="line">(integer) 4</div><div class="line">127.0.0.1:6379&gt; lrange list3 0 -1</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;three&quot;</div><div class="line">4) &quot;four&quot;</div><div class="line">127.0.0.1:6379&gt; lpop list3</div><div class="line">&quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; lrange list3 0 -1</div><div class="line">1) &quot;two&quot;</div><div class="line">2) &quot;three&quot;</div><div class="line">3) &quot;four&quot;</div><div class="line">127.0.0.1:6379&gt; rpop list3</div><div class="line">&quot;four&quot;</div><div class="line">127.0.0.1:6379&gt; lrange list3 0 -1</div><div class="line">1) &quot;two&quot;</div><div class="line">2) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>7.把list3尾部信息调到list4的头部<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; rpush list4 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; rpush list4 two</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6379&gt; rpoppush list3 list4</div><div class="line">(error) ERR unknown command &apos;rpoppush&apos;</div><div class="line">127.0.0.1:6379&gt; rpoplpush list3 list4</div><div class="line">&quot;three&quot;</div><div class="line">127.0.0.1:6379&gt; lrange list4 0 -1 </div><div class="line">1) &quot;three&quot;</div><div class="line">2) &quot;one&quot;</div><div class="line">3) &quot;two&quot;</div><div class="line">127.0.0.1:6379&gt; lrange list3 0 -1 </div><div class="line">1) &quot;two&quot;</div></pre></td></tr></table></figure></p>
+<p>8.index 查询list中的任一列或栈<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; lindex list4 2</div><div class="line">&quot;two&quot;</div><div class="line">127.0.0.1:6379&gt; lindex list4 1</div><div class="line">&quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; lindex list4 3</div><div class="line">(nil)  //空值</div><div class="line">127.0.0.1:6379&gt; lindex list4 -1</div><div class="line">&quot;two&quot;</div><div class="line">127.0.0.1:6379&gt; lindex list4 0</div><div class="line">&quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>9.llen 查询list的栈或队列的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; lpush list5 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; lpush list5 two</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6379&gt; lpush list5 three</div><div class="line">(integer) 3</div><div class="line">127.0.0.1:6379&gt; lpush list5 four</div><div class="line">(integer) 4</div><div class="line">127.0.0.1:6379&gt; lpush list5 five</div><div class="line">(integer) 5</div><div class="line">127.0.0.1:6379&gt; lrange list5 0 -1</div><div class="line">1) &quot;five&quot;</div><div class="line">2) &quot;four&quot;</div><div class="line">3) &quot;three&quot;</div><div class="line">4) &quot;two&quot;</div><div class="line">5) &quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; llen list5</div><div class="line">(integer) 5</div></pre></td></tr></table></figure></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2016/09/07/redis3/" data-id="cj7pnlyxc0002skuxj6rrlalm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+</article>
+
+
+
+    <article id="post-redis1" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2016/09/04/redis1/">redis2</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/09/04/redis1/">
+            <time datetime="2016-09-04T02:53:38.000Z" itemprop="datePublished">2016-09-04</time>
+        </a>
+    </div>
+
+
+                        
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/redis/">redis</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>#redis的数据类型</p>
+<p>打开redis数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@redis ~]# redis-cli</div><div class="line">127.0.0.1:6379&gt;</div></pre></td></tr></table></figure>
+<p>##strings:<br>set key=values<br>例如： set name=shlzx<br>获取name的对应值： get name<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set name lucy</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get name</div><div class="line">&quot;lucy&quot;</div></pre></td></tr></table></figure></p>
+<p>#####setnx  </p>
+<blockquote>
+<p>如果key已经存在，则返回一个0<br>作用：防止设置出现覆盖现象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; setnx  shu 10</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; setnx shu 20</div><div class="line">(integer) 0</div><div class="line">127.0.0.1:6379&gt; get shu</div><div class="line">&quot;10&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>nx 代表 not exsite</p>
+<p>#####setex</p>
+<blockquote>
+<p>setex 设定值的有效值，若不设定有效值则永久有效<br>例如： setex name 10<br>有效期为10秒<br>setrange  设定values 的子字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set email lucy@shu.net</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get email</div><div class="line">&quot;lucy@shu.net&quot;</div><div class="line">127.0.0.1:6379&gt; setrange email 6 yu</div><div class="line">(integer) 12</div><div class="line">127.0.0.1:6379&gt; get email</div><div class="line">&quot;lucy@syu.net&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>#####mset: </p>
+<blockquote>
+<p>设置多个key值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; mset key1 lucy key2 12 key3 toma12</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get key1</div><div class="line">&quot;lucy&quot;</div><div class="line">127.0.0.1:6379&gt; get ke2</div><div class="line">(nil)  //返回空值</div><div class="line">127.0.0.1:6379&gt; get key2</div><div class="line">&quot;12&quot;</div><div class="line">127.0.0.1:6379&gt; get key3</div><div class="line">&quot;toma12&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>#####mget  </p>
+<blockquote>
+<p>同时获取多个key值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; mget key1 key2 key3</div><div class="line">1) &quot;lucy&quot;</div><div class="line">2) &quot;12&quot;</div><div class="line">3) &quot;toma12&quot;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<hr>
+<p><strong><em>redis数值的加减运算<br>incr   每次只能加1<br>incrby  自增 自减  可以自定义</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set key5 20</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; </div><div class="line">127.0.0.1:6379&gt; get key5 </div><div class="line">&quot;20&quot;</div><div class="line">127.0.0.1:6379&gt; incr key5 6</div><div class="line">(error) ERR wrong number of arguments for &apos;incr&apos; command</div><div class="line">127.0.0.1:6379&gt; incr key5 </div><div class="line">(integer) 21</div><div class="line">127.0.0.1:6379&gt; incr key5</div><div class="line">(integer) 22</div><div class="line">127.0.0.1:6379&gt; incr key5 </div><div class="line">(integer) 23</div><div class="line">127.0.0.1:6379&gt; get key5</div><div class="line">&quot;23&quot;</div><div class="line">127.0.0.1:6379&gt; incrby key5 10</div><div class="line">(integer) 33</div><div class="line">127.0.0.1:6379&gt; get key5</div><div class="line">&quot;33&quot;</div></pre></td></tr></table></figure></p>
+<p>redis字符串的添加<br>append：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; set name  tom</div><div class="line">OK</div><div class="line">127.0.0.1:6379&gt; get name</div><div class="line">&quot;tom&quot;</div><div class="line">127.0.0.1:6379&gt; append name .luscy</div><div class="line">(integer) 9</div><div class="line">127.0.0.1:6379&gt; get name</div><div class="line">&quot;tom.luscy&quot;</div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="hashes-类型"><a href="#hashes-类型" class="headerlink" title="hashes  类型"></a>hashes  类型</h2><p>#####hash<br>hset 用户:ID  key values<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; hset user:01 shu 20</div><div class="line">(integer) 0</div><div class="line">127.0.0.1:6379&gt; hget user:01 shu </div><div class="line">&quot;20&quot;</div></pre></td></tr></table></figure></p>
+<p>hset<br>hmset<br>hexists<br>hgetall<br>hvals<br>hincrby<br>hkey</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://yoursite.com/2016/09/04/redis1/" data-id="cj7pnlyyn0005skuxjl1qm1wj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
 <script>
     (function ($) {
         // Prevent duplicate binding
@@ -460,6 +875,25 @@
                     <li>
                         
                         <div class="item-thumbnail">
+                            <a href="/2017/09/07/“redis4”/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2017/09/07/“redis4”/" class="title">“redis4”</a></p>
+                            <p class="item-date"><time datetime="2017-09-07T09:07:08.000Z" itemprop="datePublished">2017-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
                             <a href="/2017/09/02/hello-world/" class="thumbnail">
     
     
@@ -495,6 +929,44 @@
                         </div>
                     </li>
                 
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/07/redis3/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/09/07/redis3/" class="title">redis3</a></p>
+                            <p class="item-date"><time datetime="2016-09-07T07:50:29.000Z" itemprop="datePublished">2016-09-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/09/04/redis1/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2016/09/04/redis1/" class="title">redis2</a></p>
+                            <p class="item-date"><time datetime="2016-09-04T02:53:38.000Z" itemprop="datePublished">2016-09-04</time></p>
+                        </div>
+                    </li>
+                
             </ul>
         </div>
     </div>
@@ -506,14 +978,28 @@
     <div class="widget-wrap">
         <h3 class="widget-title">归档</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">1</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">2</span></li></ul>
         </div>
     </div>
 
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">3</span></li></ul>
+        </div>
+    </div>
+
     
         
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/redis/" style="font-size: 10px;">redis</a>
+        </div>
+    </div>
+
     
         
     <div class="widget-wrap widget-list">

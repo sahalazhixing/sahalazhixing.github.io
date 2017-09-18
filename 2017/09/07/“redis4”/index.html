@@ -3,15 +3,20 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2016 | shlzx的博客</title>
+    <title>“redis4” | shlzx的博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="shlzx的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2016/index.html">
+    <meta name="description" content="#redis-set类型set是string中无序类型集合1.添加 sadd123456789101112127.0.0.1:6379&amp;gt; sadd myset1 one(integer) 1127.0.0.1:6379&amp;gt; sadd myset1 two(integer) 1127.0.0.1:6379&amp;gt; sadd myset1 three(integer) 1127.0.0.1:">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="“redis4”">
+<meta property="og:url" content="http://yoursite.com/2017/09/07/“redis4”/index.html">
 <meta property="og:site_name" content="shlzx的博客">
+<meta property="og:description" content="#redis-set类型set是string中无序类型集合1.添加 sadd123456789101112127.0.0.1:6379&amp;gt; sadd myset1 one(integer) 1127.0.0.1:6379&amp;gt; sadd myset1 two(integer) 1127.0.0.1:6379&amp;gt; sadd myset1 three(integer) 1127.0.0.1:">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-07T10:05:54.028Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shlzx的博客">
+<meta name="twitter:title" content="“redis4”">
+<meta name="twitter:description" content="#redis-set类型set是string中无序类型集合1.添加 sadd123456789101112127.0.0.1:6379&amp;gt; sadd myset1 one(integer) 1127.0.0.1:6379&amp;gt; sadd myset1 two(integer) 1127.0.0.1:6379&amp;gt; sadd myset1 three(integer) 1127.0.0.1:">
     
 
     
@@ -206,102 +211,152 @@
 </aside>
 
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title">2016</h1>
-            </div>
+            <section id="main"><article id="“-“redis4”" class="article article-type-“" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+        
+            <header class="article-header">
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/10/12/test/">test</a>
+        <h1 class="article-title" itemprop="name">
+            “redis4”
         </h1>
     
 
-                <div class="article-meta">
-                    
+                
+                    <div class="article-meta">
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/10/12/test/">
-            <time datetime="2016-10-12T15:59:09.000Z" itemprop="datePublished">2016-10-12</time>
+        <a href="/2017/09/07/“redis4”/">
+            <time datetime="2017-09-07T09:07:08.000Z" itemprop="datePublished">2017-09-07</time>
         </a>
     </div>
 
 
-                    
-                    
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/09/07/redis3/">redis3</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/09/07/redis3/">
-            <time datetime="2016-09-07T07:50:29.000Z" itemprop="datePublished">2016-09-07</time>
-        </a>
-    </div>
-
-
-                    
-                    
+                        
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
         <a class="tag-link" href="/tags/redis/">redis</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                    </div>
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2016/09/04/redis1/">redis2</a>
-        </h1>
-    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>#redis-set类型<br><strong>set是string中无序类型集合</strong><br>1.添加 sadd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; sadd myset1 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 two</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 three</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 three</div><div class="line">(integer) 0 //注意 集合中的元素是不可重复的，股此处为空</div><div class="line">127.0.0.1:6379&gt; smembers myset1</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>2.spop 随记弹出集合的一个元素<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; spop myset1 </div><div class="line">&quot;two&quot;</div><div class="line">127.0.0.1:6379&gt; spop myset1 </div><div class="line">&quot;one&quot;</div><div class="line">127.0.0.1:6379&gt; smembers myset1</div><div class="line">1) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>3.sdiff  显示两个集合中的不同之处<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; sadd myset2 one </div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset2 hello</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset2 two</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 two</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 one</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd myset1 three</div><div class="line">(integer) 0</div><div class="line">127.0.0.1:6379&gt; smembers myset1</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;three&quot;</div><div class="line">127.0.0.1:6379&gt; smembers myset2</div><div class="line">1) &quot;one&quot;</div><div class="line">2) &quot;two&quot;</div><div class="line">3) &quot;hello&quot;</div><div class="line">127.0.0.1:6379&gt; sdiff myset1 myset2</div><div class="line">1) &quot;three&quot;</div></pre></td></tr></table></figure></p>
+<p>4.sinterstore 返回所有给定key的交集，并将结果存入为另一个key<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; sadd  b 3</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  b 4</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  b 5</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  a 2</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  a 3</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  a 4</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; smembers a</div><div class="line">1) &quot;2&quot;</div><div class="line">2) &quot;3&quot;</div><div class="line">3) &quot;4&quot;</div><div class="line">127.0.0.1:6379&gt; smembers b</div><div class="line">1) &quot;3&quot;</div><div class="line">2) &quot;4&quot;</div><div class="line">3) &quot;5&quot;</div><div class="line">127.0.0.1:6379&gt; sinterstore x a b</div><div class="line">(integer) 2</div><div class="line">127.0.0.1:6379&gt; smembers x</div><div class="line">1) &quot;3&quot;</div><div class="line">2) &quot;4&quot;</div></pre></td></tr></table></figure></p>
+<p>5.sunion 显示所有给定key的并集</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">127.0.0.1:6379&gt; smembers a</div><div class="line">1) &quot;2&quot;</div><div class="line">2) &quot;3&quot;</div><div class="line">3) &quot;4&quot;</div><div class="line">4) &quot;5&quot;</div><div class="line">127.0.0.1:6379&gt; sadd  c 1</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  c 2</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  c 12</div><div class="line">(integer) 1</div><div class="line">127.0.0.1:6379&gt; sadd  c 10</div><div class="line">(integer) 1</div><div class="line"></div><div class="line">127.0.0.1:6379&gt; smembers c</div><div class="line">1) &quot;1&quot;</div><div class="line">2) &quot;2&quot;</div><div class="line">3) &quot;10&quot;</div><div class="line">4) &quot;12&quot;</div><div class="line">127.0.0.1:6379&gt; sunion y a c</div><div class="line">1) &quot;1&quot;</div><div class="line">2) &quot;2&quot;</div><div class="line">3) &quot;3&quot;</div><div class="line">4) &quot;4&quot;</div><div class="line">5) &quot;5&quot;</div><div class="line">6) &quot;10&quot;</div><div class="line">7) &quot;12&quot;</div></pre></td></tr></table></figure>
+<p>`</p>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2016/09/04/redis1/">
-            <time datetime="2016-09-04T02:53:38.000Z" itemprop="datePublished">2016-09-04</time>
-        </a>
-    </div>
-
-
-                    
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/redis/">redis</a>
-    </div>
-
-                </div>
-            </div>
+        
         </div>
-    
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
 </div>
+
+    <a data-url="http://yoursite.com/2017/09/07/“redis4”/" data-id="cj7pnlz2k000askux4zfxdu59" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2017/09/02/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Hello World</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+
 </section>
             
                 
